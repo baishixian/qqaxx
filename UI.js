@@ -27,7 +27,7 @@ ui.layout(
                                         <text text="脚本选择" textColor="#222222" textSize="16sp" maxLines="1" />
                                         <text text="切换脚本后需在配置页设置" textColor="#999999" textSize="14sp" maxLines="1" />
                                     </vertical>
-                                    <spinner id="script_chosen" marginLeft="4" marginRight="6" entries="天天向上Pro|天天向上|Study改" />
+                                    <spinner id="script_chosen" marginLeft="4" marginRight="6" entries="天天爱学习|天天向上|Study改" />
                                 </horizontal>
                             </card>
                             <card w="*" h="70" margin="10 5" cardCornerRadius="2dp" cardElevation="1dp" foreground="?selectableItemBackground">
@@ -488,15 +488,17 @@ var execution = "";
 var thread = null;
 Initialize();
 
+////
+// 屏蔽更新
 // 版本更新检查
-var apkurl = "https://gh.fakev.cn/sec-an/Better-Auto-XXQG/releases/download/v2.2.0/v2.2.0.apk";
-var latest_version = "2.2.0";
-if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
-    ui.update.visibility = 0;
-    ui.update.setText("点击更新至最新版v" + latest_version);
-} else if (app.versionName != latest_version) {
-    checkversion();
-}
+// var apkurl = "https://gh.fakev.cn/sec-an/Better-Auto-XXQG/releases/download/v2.2.0/v2.2.0.apk";
+// var latest_version = "2.2.0";
+// if (GLOBAL_CONFIG.get("NO_UPDATE", 0) && (app.versionName != latest_version)) {
+//     ui.update.visibility = 0;
+//     ui.update.setText("点击更新至最新版v" + latest_version);
+// } else if (app.versionName != latest_version) {
+//     checkversion();
+// }
 
 
 // 创建选项菜单(右上角)
@@ -517,7 +519,7 @@ ui.emitter.on("options_item_selected", (e, item) => {
             alert("关于", "强国助手 v" + latest_version);
             break;
         case "Github":
-            app.openUrl("https://github.com/sec-an/Better-Auto-XXQG");
+            app.openUrl("https://github.com/baishixian/qqaxx");
             break;
         case "V2.33.0下载":
             app.openUrl("https://android-apps.pp.cn/fs08/2021/12/28/3/110_f37c420b0944cb7b9f60a2ad9b5518d2.apk?yingid=web_space&packageid=500730793&md5=664bb7bdcae57be189fc86100f4371c4&minSDK=21&size=191654161&shortMd5=1fee0bd160d08108a9d9e5f4773ce741&crc32=3879122865&did=ad484a175e19d0928044435e24bf03cb");
@@ -592,12 +594,12 @@ ui.log.click(function () {
 
 // APP更新检测
 ui.update.click(function () {
-    if (app.versionName != latest_version) {
-        GLOBAL_CONFIG.put("NO_UPDATE", 0);
-        checkversion();
-    } else {
+    // if (app.versionName != latest_version) {
+    //     GLOBAL_CONFIG.put("NO_UPDATE", 0);
+    //     checkversion();
+    // } else {
         toast("当前已经是最新版本！");
-    }
+    // }
 });
 
 // 下载并运行所选脚本
@@ -608,7 +610,7 @@ ui.start.click(function () {
         return;
     }
     threads.start(function () {
-        let url = 'https://gh-proxy.com/https://raw.githubusercontent.com/sec-an/Better-Auto-XXQG/main/' + ui.script_chosen.getSelectedItemPosition() + '.js';
+        let url = 'https://gh-proxy.com/https://raw.githubusercontent.com/baishixian/qqaxx/main/' + ui.script_chosen.getSelectedItemPosition() + '.js';
         execution = engines.execScript("强国助手", http.get(url).body.string());
     });
 });
@@ -683,7 +685,7 @@ ui.ttxs_pro_reset.click(function () {
     ui.ttxs_pro_guaji.setChecked(TTXS_PRO_CONFIG.get("guaji"));
     TTXS_PRO_CONFIG.put("siren", true);
     ui.ttxs_pro_siren.setChecked(TTXS_PRO_CONFIG.get("siren"));
-    TTXS_PRO_CONFIG.put("dacuo_num", "2");
+    TTXS_PRO_CONFIG.put("dacuo_num", "0");
     ui.ttxs_pro_dacuo_num.setText(TTXS_PRO_CONFIG.get("dacuo_num"));
     TTXS_PRO_CONFIG.put("shuangren", true);
     ui.ttxs_pro_shuangren.setChecked(TTXS_PRO_CONFIG.get("shuangren"));
@@ -820,7 +822,7 @@ function Initialize() {
     ui.ttxs_pro_jisu.setText(TTXS_PRO_CONFIG.get("jisu", "0"));
     ui.ttxs_pro_guaji.setChecked(TTXS_PRO_CONFIG.get("guaji", true));
     ui.ttxs_pro_siren.setChecked(TTXS_PRO_CONFIG.get("siren", true));
-    ui.ttxs_pro_dacuo_num.setText(TTXS_PRO_CONFIG.get("dacuo_num", "2"));
+    ui.ttxs_pro_dacuo_num.setText(TTXS_PRO_CONFIG.get("dacuo_num", "0"));
     ui.ttxs_pro_shuangren.setChecked(TTXS_PRO_CONFIG.get("shuangren", true));
     ui.ttxs_pro_bendi.setChecked(TTXS_PRO_CONFIG.get("bendi", true));
     ui.ttxs_pro_dingyue.setSelection(TTXS_PRO_CONFIG.get("dingyue", 0));

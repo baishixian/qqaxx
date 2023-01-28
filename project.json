@@ -7,8 +7,8 @@
   "useFeatures": [],
   "icon": "res/logo.png",
   "main": "main.js",
-  "name": "强国助手",
-  "packageName": "com.auto.xxqg",
+  "name": "天天爱学习",
+  "packageName": "com.qqaxx.hhxx",
   "scripts": {},
   "versionCode": 1,
   "versionName": "1.0.0"
